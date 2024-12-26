@@ -5,6 +5,8 @@ import dataRouter from './routers/data.routers.js';
 import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { fileURLToPath } from "url";
+import path from 'path';
 
 config();
 
@@ -13,9 +15,11 @@ const PORT = process.env.PORT || 8000;
 const MONGODB_URL = process.env.MONGODB_URL;
 const DB_NAME = process.env.DB_NAME;
 const server = createServer(app);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const io = new Server(server, {
-    cors: "http://localhost:5173",
+    cors: process.env.ORIGIN,
     credentials: true
 });
 
@@ -30,6 +34,15 @@ app.use((req, res, next) =>{
     req.io = io;
     next();
 })
+
+app.use(express.static(path.join(__dirname, "/")));
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+
 
 mongoose.connect(`${MONGODB_URL}/${DB_NAME}`).then(() => {
     console.log("MongoDB is connected now!");
