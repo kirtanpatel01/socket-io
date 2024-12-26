@@ -13,19 +13,20 @@ config();
 const app = express();
 const PORT = process.env.PORT || 8000;
 const MONGODB_URL = process.env.MONGODB_URL;
+const ORIGIN = process.env.ORIGIN;
 const DB_NAME = process.env.DB_NAME;
 const server = createServer(app);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const io = new Server(server, {
-    cors: process.env.ORIGIN,
+    cors: [ORIGIN, 'http://localhost:5173'],
     credentials: true
 });
 
 app.use(
     cors({
-        origin: process.env.ORIGIN,
+        origin: [ORIGIN, 'http://localhost:5173'],
         credentials: true,
     }),
 );
