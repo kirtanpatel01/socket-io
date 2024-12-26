@@ -4,7 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "npm i && node index.js",
+    "dev": "nodemon index.js",
+    "build:frontend": "cd ../frontend && npm install --include=dev && npm run build"
   },
   "author": "",
   "license": "ISC",
