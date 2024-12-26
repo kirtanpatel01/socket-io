@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="/src/assets/favicon.ico"
+      type="image/x-icon"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KJ_PATEL - Socket.io</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io('http://localhost:8000');
+      socket.on("connect", () => {
+        console.log("Connected to server!");
+      });
+    </script>
+  </body>
+</html>

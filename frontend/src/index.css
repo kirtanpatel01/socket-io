@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Customize scrollbar */
+ul::-webkit-scrollbar {
+    width: 8px; /* Adjust scrollbar width */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  ul::-webkit-scrollbar-thumb {
+    background-color: #0f766e; /* teal-950 color */
+    border-radius: 8px; /* Rounded corners for the thumb */
+  }
+  
+  ul::-webkit-scrollbar-track {
+    background-color: #1f2937; /* gray-800 color */
+  }
+  
