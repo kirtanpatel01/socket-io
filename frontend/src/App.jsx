@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const socket = io("http://localhost:8000");
-const uri = "http://localhost:8000/api/data";
+const socketUrl = import.meta.env.REACT_APP_SOCKET_URL || "http://localhost:8000";
+const apiUrl = import.meta.env.REACT_APP_API_URL || "http://localhost:8000/api";
+
+const socket = io(socketUrl);
 
 function App() {
   const [content, setContent] = useState("");
@@ -11,7 +13,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${uri}/get-all`);
+        const res = await axios.get(`${apiUrl}/data/get-all`);
         setDataList(res.data.data);
       } catch (error) {
         console.error("Error while fetching all data from database!");
@@ -36,7 +38,7 @@ function App() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/api/data/add", {
+      const response = await axios.post(`${apiUrl}/data/add`, {
         content,
       });
       console.log("Data added successfully: ", response.data);
