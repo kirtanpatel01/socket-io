@@ -6,7 +6,9 @@ import { io } from 'socket.io-client';
 
 const socketUrl = import.meta.env.VITE_REACT_APP_SOCKET_URL || 'http://localhost:8000';
 console.log(socketUrl)
-const socket = io(socketUrl);
+const socket = io(socketUrl, {
+  transports: ['websocket'],
+});
 
 socket.on('connect', () => {
   console.log('Connected to server!');
