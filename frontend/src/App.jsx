@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const apiUrl = import.meta.env.REACT_APP_API_URL || "http://localhost:8000/api";
+const apiUrl = import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:8000/api";
 
 function App({ socket }) {
   const [content, setContent] = useState("");

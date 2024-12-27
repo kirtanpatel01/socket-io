@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { io } from 'socket.io-client';
 
 const socketUrl = import.meta.env.VITE_REACT_APP_SOCKET_URL || 'http://localhost:8000';
-console.log(socketUrl)
+console.log(socketUrl);
 const socket = io(socketUrl, {
   transports: ['websocket'],
 });
