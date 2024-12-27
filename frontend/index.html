@@ -13,12 +13,14 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io('http://localhost:8000');
+    <!-- <script src=`${import.meta.env.VITE_REACT_APP_SOCKET_URL}/socket.io/socket.io.js`></script> -->
+
+    <!-- <script>
+      const socketUrl = import.meta.env.REACT_APP_SOCKET_URL || "http://localhost:8000";
+      const socket = io(socketUrl);
       socket.on("connect", () => {
         console.log("Connected to server!");
       });
-    </script>
+    </script> -->
   </body>
 </html>

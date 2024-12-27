@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const socketUrl = import.meta.env.REACT_APP_SOCKET_URL || "http://localhost:8000";
 const apiUrl = import.meta.env.REACT_APP_API_URL || "http://localhost:8000/api";
 
-const socket = io(socketUrl);
-
-function App() {
+function App({ socket }) {
   const [content, setContent] = useState("");
   const [dataList, setDataList] = useState([]);
 
