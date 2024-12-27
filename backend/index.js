@@ -36,20 +36,20 @@ app.use((req, res, next) =>{
     next();
 })
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/api/data", dataRouter);
+
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
-
 mongoose.connect(`${MONGODB_URL}/${DB_NAME}`).then(() => {
     console.log("MongoDB is connected now!");
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use("/api/data", dataRouter);
 
 io.on('connection', (socket) => {
     // console.log("A user connected!");
